@@ -25,7 +25,7 @@ This architecture and this code is adapted from
 
 The full image dataset as well as the ground truth test set is available upon request
 
-You can  download the emsemble parametres [here](https://arxiv.org/abs/1802.10062).
+You can  download the emsemble parametres [here (not public yet)]().
 
 Then run:
 
@@ -33,4 +33,4 @@ Then run:
  
 ## Output
 
-The output of the inference on all images can also be directly downloaded [here](https://arxiv.org/abs/1802.10062)
+The output of the inference on all images can also be directly downloaded [here (not public yet)]()
