@@ -1,4 +1,4 @@
-# deepCattleCounts
+# deepCattleCounts [in progress]
 
 Python code to the CSRNet implementation used to detect and count cattle in the Amazon (Hodel et al.,in review)
 
