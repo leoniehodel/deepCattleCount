@@ -36,3 +36,5 @@ po/*~
 .gitattributes
 /.ipynb_checkpoints/
 src/__pycache__/model.cpython-38.pyc
+*.pyc
+inference_list.json

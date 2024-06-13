@@ -1,0 +1,16 @@
+name: pytorch3.8
+channels:
+  - defaults
+  - conda-forge
+  - nvidia
+  - pytorch
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - pytorch=1.9.0
+  - torchvision=0.10.0
+  - cudatoolkit=11.1
+  - pip
+  - pip:
+    - opencv-python

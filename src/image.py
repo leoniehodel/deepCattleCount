@@ -51,5 +51,6 @@ def load_data(img_path,train = True, inference=False):
 
 
 def load_inference(chip_path):
-    chip = Image.open(chip_path).convert('RGB')
+    #chip = Image.open(chip_path).convert('RGB')
+    chip = Image.fromarray(chip_path).convert('RGB')
     return chip

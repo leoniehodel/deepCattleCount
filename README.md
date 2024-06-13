@@ -1,45 +1,33 @@
 # deepCattleCounts
- Python code to the CSRNet implementation used to detect and count cattle in the Amazon (Hodel et al.,in review)
- 
- 
-## 
 
-Python: 3.9
-
-PyTorch: 1.12.1
-
-CUDA: 11.7
+Python code to the CSRNet implementation used to detect and count cattle in the Amazon (Hodel et al.,in review)
 
 This architecture and this code is adapted from 
 + [CSRNet: Dilated convolutional neural networks for understanding the highly congested scenes,
   Li, Yuhong and Zhang, Xiaofan and Chen, Deming,Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018](https://arxiv.org/abs/1802.10062)
 + [leeyeehoo/CSRNet-pytorch](https://github.com/leeyeehoo/CSRNet-pytorch.git)
 
-# create a conda environment with gpu support
-conda create --name pytorch-gpu --file requirements.txt
+## create a conda environment with gpu support
 
-## Training and validating CSRNet to count cattle on image chips
+`conda env create -f torch_environment.yml`
+`conda activate pytorch3.8`
+
+## Estimate cattle distribution on VHR satellite images
+Download the ensemble parameters [here] and put them in a folder `/parameters`. 
+`python inference.py img.jpg img.kml parameters/`
+
+Img.geojson file with geopoints for approximately every 400 px x 400 px 
+containing the predicted cattle number and standard deviation from the estimate. 
+
+
+## Testing 
+In the jupyter notebook `Ensemble-test-set.ipynb` the ensemble of the trained CSRNet set is evaluated and an example 
+image shown. The test set, as well as the full image dataset are available upon request.
+
+## Training the model with new images
  
-continue training the model with new data as following. put path to new labeled images
-look at the jupyter notebook 
+continue training the model with new data as following. From labels using 'labelImg', 
+convert them into heatmaps as instructed in the jupyter notebook:
 ``
-to figure out how to create a new training set and how to prepare the 
-json files with the path to the new labeled images. then run
 
- `python train.py train.json val.json 0 Adam_01`
-
- 
-## Testing and Inference on new data
-
-The full image dataset as well as the ground truth test set is available upon request
-
-You can  download the emsemble parametres [here (not public yet)]().
-
-
-Then run:
-
-`python inference.py inference_list.json parameters/`
- 
-## Output
-
-The output of the inference on all images can also be directly downloaded [here (not public yet)]()
+`python train.py train.json val.json 0 Adam_01`
