@@ -14,6 +14,7 @@ This architecture and this code is adapted from
 
 ## Estimate cattle distribution on VHR satellite images
 Download the ensemble parameters [here] and put them in a folder `/parameters`. 
+
 `python inference.py img.jpg img.kml parameters/`
 
 Img.geojson file with geopoints for approximately every 400 px x 400 px 
