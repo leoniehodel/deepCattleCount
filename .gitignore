@@ -1,5 +1,5 @@
 # User-specific files
-data/img/chips/img.jpg
+data/
 data/*
 parameters/*
 
@@ -24,7 +24,7 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
-
+.idea
 
 .DS_Store
 # pkgdown site
