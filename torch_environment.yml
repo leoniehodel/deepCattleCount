@@ -1,4 +1,4 @@
-name: pytorch3.8
+name: pytorch-gpu
 channels:
   - defaults
   - conda-forge

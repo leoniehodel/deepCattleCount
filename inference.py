@@ -42,13 +42,13 @@ def main():
     dirs = os.listdir(modelparameters)
     model_list = [(i) for i in dirs if i.endswith(".tar")]
     args.batch_size = 16
-    args.img_size = (440, 440)
+    args.img_size = (420, 420)
     # image preprocessing: cut the image into chips to analyze individually
     img_path = args.path_to_img
     print('doing inference on ...', img_path)
 
     # cut the image into single chips
-    desired_chip_size = 440
+    desired_chip_size = 420
     img = Image.open(os.path.join(img_path))
     np_img = np.array(img)
     img_height, img_width = np_img.shape[:2]
@@ -95,43 +95,44 @@ def main():
     kml_path = args.path_to_kml
     latlong = read_latlong_kml(kml_path)
     input_crs = CRS.from_epsg(4326)
-
-    res1 = (latlong[1] - latlong[0]) / xdim
-    res2 = (latlong[3] - latlong[2]) / ydim
+    # west east south north
+    res1 = (latlong[1] - latlong[0]) / xdim # east - west
+    res2 = (latlong[3] - latlong[2]) / ydim # north -south
 
     # Generate latitude and longitude arrays
     coordx = np.zeros(xdim)
     coordy = np.zeros(ydim)
 
     for x in range(xdim):
+        # west + x_step
         coordx[x] = latlong[0] + res1 * x + (res1 / 2)
     for y in range(ydim):
+        # south + y_steps
         coordy[y] = latlong[2] + res2 * y + (res2 / 2)
 
+    # Reshape, flip, and transform the content arrays
+    mean_content = np.mean(chips_content, axis=0).reshape(xdim, ydim)
+    std_content = np.std(chips_content, axis=0).reshape(xdim, ydim)
+    mean_content_flipped = np.fliplr(mean_content)
+    std_content_flipped = np.fliplr(std_content)
+
+    # Create DataFrame
     df = pd.DataFrame({
-        'n_cattle': np.mean(np.array(chips_content),axis=0),
-        'n_cattle_sd': np.std(chips_content,axis=0),
-        'Longitude': np.repeat(coordx, ydim),  # repeat entire array ydim times 12*6
-        'Latitude': np.tile(coordy, xdim)  # repeat single elements xdim times
-    })
+        'n_cattle': mean_content_flipped.ravel(),  # Flatten the array
+        'n_cattle_sd': std_content_flipped.ravel(),  # Flatten the array
+        'Longitude': np.repeat(coordx, ydim),  # Repeat entire array ydim times
+        'Latitude': np.tile(coordy, xdim) }) # Repeat single elements xdim times
 
     gpd = gp.GeoDataFrame(df, crs=input_crs, geometry=gp.points_from_xy(df.Longitude, df.Latitude))
-    #name = img_path.split("/")[-3] + "_" + img_path.split("/")[-2] + "_" + img_path.split("/")[-1] + ".geojson"
-    name = "output.geojson"
-    # the name has to be [MUN_UF_#image]
-    print('saving the geojson ... ', name)
-    # Define the directory and file path
-    output_dir = 'data/inference/'
-    output_path = os.path.join(output_dir, name)
+    geojson_path = os.path.splitext(img_path)[0] + ".geojson"
 
-    # Create the directory if it does not exist
-    os.makedirs(output_dir, exist_ok=True)
+    print('saving the geojson ... ')
 
     # Write the GeoDataFrame to a JSON file
-    with open(output_path, 'w') as file:
+    with open(geojson_path, 'w') as file:
         file.write(gpd.to_json())
 
-    print(f"File saved to {output_path}")
+    print(f"File saved to {geojson_path}")
 
 
 def inference(chips_path, model):

@@ -10,25 +10,16 @@ This architecture and this code is adapted from
 ## create a conda environment with gpu support
 
 `conda env create -f torch_environment.yml`
-`conda activate pytorch3.8`
+`conda activate pytorch-gpu`
 
 ## Estimate cattle distribution on VHR satellite images
 Download the ensemble parameters [here] and put them in a folder `/parameters`. 
-
-`python inference.py img.jpg img.kml parameters/`
+The satellite has to be a VHR satellite image 
+`python inference.py parameters/ pathto/img.jpg pathto/img.kml`
 
 Img.geojson file with geopoints for approximately every 400 px x 400 px 
 containing the predicted cattle number and standard deviation from the estimate. 
 
-
 ## Testing 
 In the jupyter notebook `Ensemble-test-set.ipynb` the ensemble of the trained CSRNet set is evaluated and an example 
 image shown. The test set, as well as the full image dataset are available upon request.
-
-## Training the model with new images
- 
-continue training the model with new data as following. From labels using 'labelImg', 
-convert them into heatmaps as instructed in the jupyter notebook:
-``
-
-`python train.py train.json val.json 0 Adam_01`

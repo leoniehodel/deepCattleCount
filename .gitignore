@@ -3,12 +3,8 @@ data/
 data/*
 parameters/*
 
-
-
 # Output files from R CMD build
 /*.tar.gz
-
-
 
 # produced vignettes
 vignettes/*.html
