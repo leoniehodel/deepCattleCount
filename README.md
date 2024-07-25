@@ -7,7 +7,7 @@ This architecture and this code is adapted from
   Li, Yuhong and Zhang, Xiaofan and Chen, Deming,Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018](https://arxiv.org/abs/1802.10062)
 + [leeyeehoo/CSRNet-pytorch](https://github.com/leeyeehoo/CSRNet-pytorch.git)
 
-## create a conda environment with gpu support
+## Create a conda environment with gpu support
 
 `conda env create -f torch_environment.yml`
 `conda activate pytorch-gpu`
@@ -18,7 +18,7 @@ The satellite has to be a VHR satellite image
 `python inference.py parameters/ pathto/img.jpg pathto/img.kml`
 
 Img.geojson file with geopoints for approximately every 400 px x 400 px 
-containing the predicted cattle number and standard deviation from the estimate. 
+containing the predicted cattle number and ensemble-generated standard deviation from the estimate. 
 
 ## Testing 
 In the jupyter notebook `Ensemble-test-set.ipynb` the ensemble of the trained CSRNet set is evaluated and an example 
