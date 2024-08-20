@@ -22,7 +22,7 @@ coming soon..
 
 ## Downloads
 
-Download [pre-trained weights]('zenodo') for inference.
+Download [pre-trained weights]('zenodo') for inference (coming soon).
 
 
 ## Estimate cattle distribution on VHR satellite images
@@ -37,3 +37,8 @@ containing the predicted cattle number and ensemble-generated standard deviation
 ## Testing 
 In the jupyter notebook `Ensemble-test-set.ipynb` the ensemble of the trained CSRNet set is evaluated and an example 
 image shown. The test set, as well as the full image dataset are available upon request.
+
+## Dataset analysis
+
+The code for the statistical analysis of the paper, as well as the cattle maps can be found 
+under [/leoniehodel/deepCattleCounts_analysis](https://github.com/leoniehodel/deepCattleCounts_analysis/)
