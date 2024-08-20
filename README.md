@@ -10,6 +10,7 @@ This architecture and this code is adapted from
 ## Create a conda environment with gpu support
 
 `conda env create -f torch_environment.yml`
+
 `conda activate pytorch-gpu`
 
 ## Estimate cattle distribution on VHR satellite images
