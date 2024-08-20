@@ -1,8 +1,7 @@
-name: pytorch-gpu
+name: pytorch-cpu
 channels:
   - defaults
   - conda-forge
-  - nvidia
   - pytorch
 dependencies:
   - python=3.8
@@ -12,7 +11,6 @@ dependencies:
   - h5py
   - pytorch=1.9.0
   - torchvision=0.10.0
-  - cudatoolkit=11.1
   - pip
   - pip:
     - opencv-python

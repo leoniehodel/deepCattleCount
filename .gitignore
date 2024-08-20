@@ -2,6 +2,7 @@
 data/
 data/*
 parameters/*
+inference_imgs/*
 imgs/*.pptx
 # Output files from R CMD build
 /*.tar.gz
