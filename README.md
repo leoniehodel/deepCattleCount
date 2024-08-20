@@ -1,6 +1,8 @@
-# deepCattleCounts [in progress]
+# Deep learning-based cattle counts on satellite imagery offer evidence regarding land use and policy impact in the Brazilian Amazon
 
 Python code to the CSRNet implementation used to detect and count cattle in the Amazon (Hodel et al.,in review)
+
+![](./imgs/figure1.png)
 
 This architecture and this code is adapted from 
 + [CSRNet: Dilated convolutional neural networks for understanding the highly congested scenes,
@@ -15,7 +17,7 @@ This architecture and this code is adapted from
 
 ## Estimate cattle distribution on VHR satellite images
 Download the ensemble parameters [here] and put them in a folder `/parameters`. 
-The satellite has to be a VHR satellite image 
+The satellite has to be a VHR satellite image (28cm/pixel)
 `python inference.py parameters/ pathto/img.jpg pathto/img.kml`
 
 Img.geojson file with geopoints for approximately every 400 px x 400 px 

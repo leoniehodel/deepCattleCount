@@ -2,7 +2,7 @@
 data/
 data/*
 parameters/*
-
+imgs/*.pptx
 # Output files from R CMD build
 /*.tar.gz
 
