@@ -9,15 +9,26 @@ This architecture and this code is adapted from
   Li, Yuhong and Zhang, Xiaofan and Chen, Deming,Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018](https://arxiv.org/abs/1802.10062)
 + [leeyeehoo/CSRNet-pytorch](https://github.com/leeyeehoo/CSRNet-pytorch.git)
 
-## Create a conda environment with gpu support
+## Create a conda environment with GPU support (recommended)
+
 
 `conda env create -f torch_environment.yml`
 
 `conda activate pytorch-gpu`
 
+## Create a conda environment with CPU support only 
+
+coming soon.. 
+
+## Downloads
+
+Download [pre-trained weights]('zenodo') for inference.
+
+
 ## Estimate cattle distribution on VHR satellite images
-Download the ensemble parameters [here] and put them in a folder `/parameters`. 
+
 The satellite has to be a VHR satellite image (28cm/pixel)
+
 `python inference.py parameters/ pathto/img.jpg pathto/img.kml`
 
 Img.geojson file with geopoints for approximately every 400 px x 400 px 
