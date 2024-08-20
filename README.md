@@ -18,7 +18,11 @@ This architecture and this code is adapted from
 
 ## Create a conda environment with CPU support only 
 
-coming soon.. 
+`conda env create -f torch_environment_cpu.yml`  
+
+`conda activate pytorch-cpu`
+
+
 
 ## Downloads
 

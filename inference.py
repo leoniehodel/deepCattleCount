@@ -25,11 +25,12 @@ parser.add_argument('path_to_kml', metavar='KML',type=str,
                     help='path to kml georeference of the image')
 def main():
     global args
+    global device
     args = parser.parse_args()
     args.seed = time.time()
 
     # cuda
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+    #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     torch.cuda.manual_seed(int(args.seed))
 
 
@@ -78,18 +79,31 @@ def main():
 
     # Initialize a list to store the model outputs
     chips_content = np.zeros((len(model_list), xdim*ydim), dtype=np.float64)
-
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(device)
     # ensemble prediction on image chips
     n_model = 0
     for i in model_list:
+        # Instantiate the model
         model = CSRNet()
-        model = model.cuda()
-        checkpoint = torch.load(os.path.join(modelparameters, i))
-        model.load_state_dict(checkpoint['state_dict'])
-        # load it into the inference loader
+        # Check device
+        if device == 'cuda':
+            model = model.cuda()
+            checkpoint = torch.load(os.path.join(modelparameters, i))
+            model.load_state_dict(checkpoint['state_dict'])
+        else:
+            # Load the model state dict directly to CPU
+            checkpoint = torch.load(os.path.join(modelparameters, i), map_location=torch.device('cpu'))
+            model.load_state_dict(checkpoint['state_dict'])
+
+        # Load model for inference
         chips_content[n_model, :] = inference(chips_img_list, model)
-        print('sum of ',i,' : ',np.sum(chips_content[n_model, :]))
-        n_model  =n_model +1
+
+        # Print sum of inference results
+        print(f'sum of {i} : {np.sum(chips_content[n_model, :])}')
+
+        # Increment model index
+        n_model += 1
 
     # get geospatial information from kml file
     kml_path = args.path_to_kml
@@ -146,7 +160,8 @@ def inference(chips_path, model):
 
     with torch.no_grad():
         for img in infer_loader:
-            img = img.cuda()
+            #img = img.cuda()
+            img = img.to(device)
             output = model(img)
             output = output.data.sum((2, 3)).cpu().squeeze(0).detach().numpy()
 
