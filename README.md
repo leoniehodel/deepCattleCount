@@ -26,7 +26,7 @@ This architecture and this code is adapted from
 
 ## Downloads
 
-Download [pre-trained weights]('zenodo') for inference (coming soon).
+Download [pre-trained weights]('https://zenodo.org/records/13385687') for inference (coming soon).
 
 
 ## Estimate cattle distribution on VHR satellite images
