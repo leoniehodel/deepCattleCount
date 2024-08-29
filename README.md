@@ -39,7 +39,7 @@ Img.geojson file with geopoints for approximately every 400 px x 400 px
 containing the predicted cattle number and ensemble-generated standard deviation from the estimate. 
 
 ## Testing 
-In the jupyter notebook [Ensemble-test-set.ipynb](https://github.com/leoniehodel/deepCattleCounts/Ensemble-test-set.ipynb) the ensemble of the trained CSRNet set is evaluated and an example 
+In the jupyter notebook [Ensemble-test-set.ipynb](https://github.com/leoniehodel/deepCattleCount/blob/master/Ensemble-test-set.ipyn) the ensemble of the trained CSRNet set is evaluated and an example 
 image shown. The test set, as well as the full image dataset are available upon request.
 
 ## Dataset analysis
