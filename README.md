@@ -45,4 +45,4 @@ image shown. The test set, as well as the full image dataset are available upon 
 ## Dataset analysis
 
 The code for the statistical analysis of the paper, as well as the cattle maps can be found 
-under [/leoniehodel/deepCattleCounts_analysis](https://github.com/leoniehodel/deepCattleCounts_analysis/)
+under [/leoniehodel/deepCattleCounts_analysis](https://github.com/leoniehodel/deepCattleCount_analysis/)
