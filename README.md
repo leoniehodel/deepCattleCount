@@ -40,7 +40,7 @@ Trained parameters will be saved in the parameters folder.
 
 ## Testing 
 
-In the jupyter notebook [Ensemble-test-set.ipynb](https://github.com/leoniehodel/deepCattleCount/blob/master/Ensemble-test-set.ipynb) the ensemble of the trained CSRNet set is evaluated and an example 
+In the jupyter notebook [Ensemble-test-set.ipynb](https://github.com/leoniehodel/deepCattleCount/notebooks/Ensemble-test-set.ipynb) the ensemble of the trained CSRNet set is evaluated and an example 
 image shown. 
 
 The test set, as well as the full image dataset are available upon request.
