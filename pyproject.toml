@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepCattleCounts"
+version = "0.1.0"
+authors = [
+    {name = "Leonie Hodel", email = "leonie@wisc.edu"},
+]
+description = "A model to identify and count cattle from VHR images."
+readme = "README.md"
+requires-python = "~=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "torch>=2.5.0",
+]
+
+[tool.ruff]
+line-length = 120
+lint.select = ["E", "F", "I", "Q"]
+lint.ignore = []
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "single"
+multiline-quotes = "double"
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+

@@ -1,0 +1,19 @@
+name: deepcattlecount
+channels:
+  - defaults
+  - conda-forge
+  - nvidia
+  - pytorch
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - geopandas
+  - h5py
+  - pip
+  - pip:
+    - opencv-python
+    - torch==1.13.1
+    - torchvision==0.14.1
+    - typer
+    - pyyaml
