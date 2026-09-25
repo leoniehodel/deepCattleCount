@@ -10,14 +10,25 @@ authors = [
 ]
 description = "A model to identify and count cattle from VHR images."
 readme = "README.md"
-requires-python = "~=3.8"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "torch>=2.5.0",
+    "torch>=2.6",
+    "torchvision",
+    "opencv-python",
+    "numpy",
+    "pandas",
+    "geopandas",
+    "pyproj",
+    "rasterio",
+    "h5py",
+    "pillow",
+    "matplotlib",
+    "requests",
 ]
 
 [tool.ruff]
