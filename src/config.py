@@ -19,7 +19,9 @@ class TrainingConfig:
         self.workers = 4
         self.seed = time.time()
         self.print_freq = 30
-        self.img_size = (440, 440)
+        # the training tiles are 420 x 420 px on disk and are resized to this size, the scale
+        # the v2 model was trained at; inference.py feeds its 420 px chips at the same size
+        self.img_size = (424, 424)
         self.counter = 0
         self.pre = args.pre
         self.task = args.task
@@ -27,22 +29,8 @@ class TrainingConfig:
         self.best_prec1 = 1e6
 
     def get_criterion(self):
-        return nn.MSELoss(size_average=False).cuda() if self.use_cuda else nn.MSELoss(size_average=False)
+        return nn.MSELoss(reduction='sum').cuda() if self.use_cuda else nn.MSELoss(reduction='sum')
 
     def get_optimizer(self, parameters):
         return optim.Adam(parameters, self.lr, weight_decay=self.decay)
-    
 
-class InferenceConfig:
-    def __init__(self, args):
-        self.modelparameters = args.modelparameters
-        self.img_path = args.path_to_img
-        self.kml_path = args.path_to_kml
-        self.batch_size = 16
-        self.img_size = (420, 420)
-        self.desired_chip_size = 420
-        self.use_cuda = torch.cuda.is_available()
-        self.seed = args.seed
-
-    def get_device(self):
-        return torch.device('cuda' if self.use_cuda else 'cpu')

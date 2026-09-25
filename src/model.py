@@ -3,19 +3,20 @@ from torchvision import models
 
 
 class CSRNet(nn.Module):
-    def __init__(self, load_weights=False):
+    def __init__(self, load_weights=False, dilation_val=3):
         super(CSRNet, self).__init__()
         self.seen = 0
         # this follows the architecture in Li,2018 (configuration 2)
         self.frontend_feat = [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512]
         self.backend_feat = [512, 512, 512, 256, 128, 64]
         self.frontend = make_layers(self.frontend_feat)
-        self.backend = make_layers(self.backend_feat, in_channels=512, dilation=True, batch_norm=False)
+        self.backend = make_layers(self.backend_feat, in_channels=512, dilation=True,
+                                   dilation_val=dilation_val, batch_norm=False)
 
         self.output_layer = nn.Conv2d(64, 1, kernel_size=1)
 
         if not load_weights:
-            mod = models.vgg16(pretrained=True)
+            mod = models.vgg16(weights='IMAGENET1K_V1')
             self._initialize_weights()
             self.frontend.load_state_dict(mod.features.state_dict(), strict=False)
 
@@ -36,8 +37,8 @@ class CSRNet(nn.Module):
                 nn.init.constant_(m.bias, 0)
 
 
-def make_layers(cfg, in_channels=3, batch_norm=False, dilation=False):
-    d_rate = 2 if dilation else 1
+def make_layers(cfg, in_channels=3, batch_norm=False, dilation=False, dilation_val=3):
+    d_rate = dilation_val if dilation else 1
     layers = []
     for v in cfg:
         if v == 'M':

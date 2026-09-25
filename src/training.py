@@ -22,7 +22,8 @@ def train(train_list, model, criterion, optimizer, epoch, config):
                        train=True, 
                        seen=model.seen,
                        batch_size=config.batch_size,
-                       num_workers=config.workers),
+                       num_workers=config.workers,
+                       chip_size=config.img_size),
         batch_size=config.batch_size)
     print(
         'epoch %d of %d, processed %d samples, lr %.10f' % 
@@ -63,7 +64,7 @@ def validate(val_list, model, config):
                    transform=transforms.Compose([
                        transforms.ToTensor(),
                        transforms.Resize(config.img_size)
-                   ]),  train=False),
+                   ]),  train=False, chip_size=config.img_size),
     batch_size=config.batch_size)    
     
     model.eval()
