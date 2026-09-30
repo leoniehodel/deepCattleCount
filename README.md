@@ -7,7 +7,7 @@
 
 Deep learning–based cattle counts on satellite imagery, offering evidence on land use and policy impact in the Brazilian Amazon.
 This repository contains the Python code for the CSRNet implementation of [Hodel et al., 2026](https://www.nature.com/articles/s44458-026-00082-2) and 
-Hodel, Gibbs et al., forthcoming.
+Hodel, Gibbs et al. in review.
 
 ![](./imgs/csr_density_overlay_v2.jpg)
 
